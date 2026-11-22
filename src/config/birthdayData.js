@@ -10,8 +10,8 @@
 export const birthdayData = {
   // Recipient details
   recipient: {
-    name: "Beautiful",
-    nickname: "My Angel",
+    name: "Ankita",
+    nickname: "Anki",
     birthdate: "Today",
     yearCelebrated: "2024",
   },
@@ -33,13 +33,13 @@ export const birthdayData = {
     photos: [
       {
         id: 1,
-        title: "Radiant Joy",
+        title: "Radiant Ankita",
         caption: "That smile that effortlessly illuminates everything around you ✨",
         src: "/assets/photos/photo1.jpg",
         date: "Special Memory",
         rotation: -4,
         scale: 1.02,
-        aspect: "portrait", // portrait, square, landscape
+        aspect: "landscape",
       },
       {
         id: 2,
@@ -49,7 +49,7 @@ export const birthdayData = {
         date: "Golden Hour",
         rotation: 3,
         scale: 0.98,
-        aspect: "square",
+        aspect: "landscape",
       },
       {
         id: 3,
@@ -59,15 +59,15 @@ export const birthdayData = {
         date: "Sweet Serenity",
         rotation: -2,
         scale: 1.04,
-        aspect: "portrait",
+        aspect: "landscape",
       },
       {
         id: 4,
         title: "Timeless Laughter",
-        caption: "Laughter looks so breathtaking on you 🌷",
+        caption: "Laughter looks so breathtaking on you, Ankita 🌷",
         src: "/assets/photos/photo4.jpg",
         date: "Cherished Moment",
-        rotation: 5,
+        rotation: 4,
         scale: 0.96,
         aspect: "landscape",
       },
@@ -79,17 +79,7 @@ export const birthdayData = {
         date: "Dreamy Days",
         rotation: -3,
         scale: 1.01,
-        aspect: "portrait",
-      },
-      {
-        id: 6,
-        title: "Starlit Heart",
-        caption: "The world is simply a warmer place with you in it ✨",
-        src: "/assets/photos/photo6.jpg",
-        date: "Pure Happiness",
-        rotation: 4,
-        scale: 0.99,
-        aspect: "square",
+        aspect: "landscape",
       },
     ],
   },
@@ -157,7 +147,7 @@ export const birthdayData = {
     envelopeSubtitle: "Sealed with warmth, wrapped with fondness",
     openButtonText: "Open My Little Letter",
     closeButtonText: "Fold & Close Letter",
-    salutation: "Dearest,",
+    salutation: "Dearest Ankita,",
     paragraphs: [
       "On this special day, I wanted to pause time for just a little while to celebrate the wonderful, extraordinary soul that you are.",
       "Your warmth, your quiet grace, and the effortless way you bring light into any room have touched my heart in ways that words can never fully capture.",
@@ -171,11 +161,11 @@ export const birthdayData = {
   // Section 5: Birthday Cake & Celebration
   celebration: {
     badge: "Make a Wish",
-    title: "Happy Birthday, Beautiful! 🎂",
-    subtitle: "Today is all about you — your laughter, your dreams, your day.",
+    title: "Happy Birthday, Ankita! 🎂",
+    subtitle: "Today is all about you, Ankita — your laughter, your dreams, your day.",
     wishButtonText: "Make a Wish ✨",
     wishDoneText: "Wish Sent to the Stars 🌟",
-    wishMessage: "May all your quiet hopes, sweetest dreams, and deepest desires blossom into reality this year. You deserve every ounce of magic this world has to offer! ✨🎂🥂",
+    wishMessage: "May all your quiet hopes, sweetest dreams, and deepest desires blossom into reality this year, Ankita. You deserve every ounce of magic this world has to offer! ✨🎂🥂",
     candleHint: "Tap the candle flame or button to blow out your birthday candle!",
   },
 
@@ -184,10 +174,10 @@ export const birthdayData = {
     badge: "A Promise For Tomorrow",
     title: "Before You Go... ♡",
     messageParagraph1: "I don't know what the future holds, but I hope your life is always filled with happiness, laughter, and beautiful moments.",
-    messageParagraph2: "Keep smiling, keep shining, and never forget how special you are.",
-    messageParagraph3: "You deserve all the beautiful things in this world. Happy Birthday! ❤️",
+    messageParagraph2: "Keep smiling, keep shining, and never forget how special you are, Ankita.",
+    messageParagraph3: "You deserve all the beautiful things in this world. Happy Birthday, Ankita! ❤️",
     footerQuote: "Made With A Little Extra Love ♡",
-    sealText: "Forever Cherished",
+    sealText: "Forever Cherished — Ankita",
   },
 
   // Music settings

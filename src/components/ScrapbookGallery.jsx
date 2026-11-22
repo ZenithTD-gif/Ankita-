@@ -12,7 +12,7 @@ function AestheticPhotoCard({ photo, isLightbox = false }) {
         src={photo.src}
         alt={photo.title}
         onError={() => setImageError(true)}
-        className={`w-full ${isLightbox ? 'max-h-[70vh] object-contain' : 'h-64 sm:h-72 object-cover'} rounded-lg transition-transform duration-500`}
+        className={`w-full ${isLightbox ? 'max-h-[75vh] w-auto max-w-full object-contain' : 'h-64 sm:h-72 object-cover object-center'} rounded-lg transition-transform duration-500`}
         loading="lazy"
       />
     );
