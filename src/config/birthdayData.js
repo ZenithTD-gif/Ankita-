@@ -81,6 +81,16 @@ export const birthdayData = {
         scale: 1.01,
         aspect: "landscape",
       },
+      {
+        id: 6,
+        title: "Sunlit Charm",
+        caption: "A radiant smile, flowers in your hair, and a natural warmth that brightens the whole world ✨",
+        src: "/assets/photos/photo6.jpg",
+        date: "Sun-Kissed Glow",
+        rotation: 3,
+        scale: 0.99,
+        aspect: "landscape",
+      },
     ],
   },
 

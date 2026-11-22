@@ -83,7 +83,8 @@ export class LoadingManager {
             '/assets/photos/photo2.jpg',
             '/assets/photos/photo3.jpg',
             '/assets/photos/photo4.jpg',
-            '/assets/photos/photo5.jpg'
+            '/assets/photos/photo5.jpg',
+            '/assets/photos/photo6.jpg'
           ];
 
       let loadedCount = 0;
