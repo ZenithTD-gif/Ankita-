@@ -132,10 +132,10 @@ export default function LetterEnvelope3D() {
               ))}
 
               <div className="pt-4 sm:pt-6 mt-4 sm:mt-6 border-t border-pastel-pink/40">
-                <p className="font-handwritten text-lg sm:text-xl text-dusty-rose mb-1">
+                <p className="font-handwritten text-xl sm:text-2xl text-dusty-rose mb-1.5 tracking-wide">
                   {letter.closing}
                 </p>
-                <p className="font-script text-2xl sm:text-3xl md:text-4xl text-dusty-deep">
+                <p className="font-script text-3xl sm:text-4xl md:text-5xl text-dusty-deep leading-tight">
                   {letter.signature}
                 </p>
               </div>

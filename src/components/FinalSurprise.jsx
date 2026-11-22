@@ -2,15 +2,28 @@ import React, { useState } from 'react';
 import { Heart, Sparkles, Moon, Stars } from 'lucide-react';
 import { birthdayData } from '../config/birthdayData';
 import { romanticAudio } from '../utils/soundEffects';
+import { flowerAnimation } from '../utils/flowerAnimation';
 import confetti from 'canvas-confetti';
 
 export default function FinalSurprise() {
   const [heartPulsed, setHeartPulsed] = useState(false);
   const { title, messageParagraph1, messageParagraph2, messageParagraph3, footerQuote, sealText } = birthdayData.final;
 
-  const handleHeartClick = () => {
+  const handleHeartClick = (e) => {
     setHeartPulsed(true);
     romanticAudio.playChime('wish');
+
+    let originX = window.innerWidth / 2;
+    let originY = window.innerHeight * 0.75;
+
+    if (e && e.currentTarget) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      originX = rect.left + rect.width / 2;
+      originY = rect.top + rect.height / 2;
+    }
+
+    // Trigger magical flower flying & falling animation
+    flowerAnimation.trigger(originX, originY);
 
     confetti({
       particleCount: window.innerWidth < 640 ? 25 : 40,

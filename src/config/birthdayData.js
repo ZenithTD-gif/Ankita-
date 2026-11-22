@@ -154,8 +154,8 @@ export const birthdayData = {
       "May this new chapter bring you boundless joy, dreams fulfilled, peaceful moments, and a thousand new reasons to smile every single day.",
       "Never forget how truly cherished, appreciated, and special you are to this world — and especially to me.",
     ],
-    closing: "With all my love, warmth, and warmest wishes,",
-    signature: "Always Yours ♡",
+    closing: "Always yours,",
+    signature: "Tridip Deka ♡",
   },
 
   // Section 5: Birthday Cake & Celebration

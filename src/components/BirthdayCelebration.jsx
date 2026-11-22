@@ -2,62 +2,73 @@ import React, { useState } from 'react';
 import { Sparkles, Heart, Gift, Award } from 'lucide-react';
 import { birthdayData } from '../config/birthdayData';
 import { romanticAudio } from '../utils/soundEffects';
+import { flowerAnimation } from '../utils/flowerAnimation';
 import confetti from 'canvas-confetti';
 
 export default function BirthdayCelebration() {
   const [candlesBlown, setCandlesBlown] = useState(false);
   const [showWishMessage, setShowWishMessage] = useState(false);
   const [balloonsRising, setBalloonsRising] = useState(false);
-  const { title, subtitle, wishButtonText, wishDoneText, wishMessage, candleHint } = birthdayData.celebration;
+  const { title, subtitle, wishButtonText, wishMessage, candleHint } = birthdayData.celebration;
 
-  const handleMakeWish = () => {
-    if (candlesBlown) return;
+  const handleMakeWish = (e) => {
+    // Determine click/touch origin coordinates
+    let originX = window.innerWidth / 2;
+    let originY = window.innerHeight * 0.7;
 
-    setCandlesBlown(true);
-    setBalloonsRising(true);
-    romanticAudio.playChime('wish');
-
-    // Luxurious celebratory confetti
-    const count = window.innerWidth < 640 ? 120 : 200;
-    const defaults = {
-      origin: { y: 0.7 },
-      zIndex: 1000,
-      ticks: 260,
-    };
-
-    function fire(particleRatio, opts) {
-      confetti({
-        ...defaults,
-        ...opts,
-        particleCount: Math.floor(count * particleRatio),
-      });
+    if (e && e.currentTarget) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      originX = rect.left + rect.width / 2;
+      originY = rect.top + rect.height / 2;
+    } else if (e && e.clientX && e.clientY) {
+      originX = e.clientX;
+      originY = e.clientY;
     }
 
-    fire(0.25, {
-      spread: 26,
-      startVelocity: 50,
-      colors: ['#e6ca65', '#f4a5ae', '#ffffff'],
-    });
-    fire(0.2, {
-      spread: 60,
-      colors: ['#fbcfe8', '#e2a9b0', '#c5a059'],
-    });
-    fire(0.35, {
-      spread: 90,
-      decay: 0.91,
-      scalar: 1.1,
-      colors: ['#e6ca65', '#fce7f0', '#ffffff'],
-    });
-    fire(0.1, {
-      spread: 110,
-      startVelocity: 25,
-      decay: 0.92,
-      colors: ['#c08081', '#fdf8f0'],
-    });
+    // Always trigger the magical flying and falling flower animation!
+    flowerAnimation.trigger(originX, originY);
+    romanticAudio.playChime('wish');
 
-    setTimeout(() => {
-      setShowWishMessage(true);
-    }, 600);
+    if (!candlesBlown) {
+      setCandlesBlown(true);
+      setBalloonsRising(true);
+
+      // Celebratory confetti bursts
+      const count = window.innerWidth < 640 ? 120 : 200;
+      const defaults = {
+        origin: { y: 0.7 },
+        zIndex: 1000,
+        ticks: 260,
+      };
+
+      const fire = (particleRatio, opts) => {
+        confetti({
+          ...defaults,
+          ...opts,
+          particleCount: Math.floor(count * particleRatio),
+        });
+      };
+
+      fire(0.25, {
+        spread: 26,
+        startVelocity: 50,
+        colors: ['#e6ca65', '#f4a5ae', '#ffffff'],
+      });
+      fire(0.2, {
+        spread: 60,
+        colors: ['#fbcfe8', '#e2a9b0', '#c5a059'],
+      });
+      fire(0.35, {
+        spread: 90,
+        decay: 0.91,
+        scalar: 1.1,
+        colors: ['#e6ca65', '#fce7f0', '#ffffff'],
+      });
+
+      setTimeout(() => {
+        setShowWishMessage(true);
+      }, 600);
+    }
   };
 
   return (
@@ -117,7 +128,7 @@ export default function BirthdayCelebration() {
         <div 
           onClick={handleMakeWish}
           className="relative cursor-pointer group flex flex-col items-center transition-transform duration-500 hover:scale-105 active:scale-98"
-          title="Click to blow out candles and make a wish!"
+          title="Click to blow out candles and release magical flowers!"
         >
           {/* Candle & Animated Flame */}
           <div className="relative z-20 flex flex-col items-center mb-[-4px]">
@@ -178,25 +189,21 @@ export default function BirthdayCelebration() {
 
         {/* Hint under cake */}
         <p className="mt-5 sm:mt-6 text-[11px] sm:text-xs text-dusty-deep/70 font-sans tracking-wide text-center px-2">
-          {!candlesBlown ? candleHint : "Your birthday wish has ascended to the cosmos ✨"}
+          {!candlesBlown ? candleHint : "Tap the button below anytime to release more flowers! 🌸"}
         </p>
 
-        {/* Make a Wish Button with min 48px height */}
+        {/* Final Birthday Celebration Button with Flower Burst */}
         <div className="mt-6 sm:mt-8 w-full sm:w-auto px-4 flex justify-center">
           <button
+            type="button"
             onClick={handleMakeWish}
-            disabled={candlesBlown}
-            className={`group inline-flex items-center justify-center gap-2.5 sm:gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-serif text-base sm:text-lg tracking-wide shadow-rose-glow transition-all duration-300 min-h-[48px] w-full sm:w-auto ${
-              candlesBlown
-                ? 'bg-cream-300 text-dusty-rose cursor-default'
-                : 'bg-gradient-to-r from-dusty-rose via-dusty-deep to-dusty-rose text-white hover:scale-105 active:scale-95 hover:shadow-glass-hover'
-            }`}
+            className="group relative inline-flex items-center justify-center gap-2.5 sm:gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-serif text-base sm:text-lg tracking-wide shadow-rose-glow transition-all duration-300 min-h-[48px] w-full sm:w-auto bg-gradient-to-r from-dusty-rose via-dusty-deep to-dusty-rose text-white hover:scale-105 active:scale-95 hover:shadow-glass-hover cursor-pointer"
           >
-            <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-champagne-gold" />
+            <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-champagne-gold animate-sparkle" />
             <span className="font-medium">
-              {candlesBlown ? wishDoneText : wishButtonText}
+              {candlesBlown ? "🌸 Release Birthday Flowers 🌸" : wishButtonText}
             </span>
-            <Heart className="w-4 h-4 fill-current" />
+            <Heart className="w-4 h-4 fill-current text-champagne-light" />
           </button>
         </div>
       </div>
@@ -213,8 +220,19 @@ export default function BirthdayCelebration() {
           <p className="font-sans text-xs sm:text-base md:text-lg text-dusty-deep/90 leading-relaxed font-light mb-4 sm:mb-6">
             {wishMessage}
           </p>
-          <div className="font-script text-2xl sm:text-3xl text-dusty-rose">
+          <div className="font-script text-2xl sm:text-3xl text-dusty-rose mb-5">
             May this be your happiest year yet ♡
+          </div>
+
+          {/* Interactive flower release action */}
+          <div className="flex justify-center">
+            <button
+              type="button"
+              onClick={handleMakeWish}
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-cream-200 hover:bg-cream-300 active:scale-95 text-dusty-deep font-serif text-xs sm:text-sm font-medium shadow-sm transition-all min-h-[44px]"
+            >
+              <span>🌸 Shower with Flowers & Sparkles 🌸</span>
+            </button>
           </div>
         </div>
       )}

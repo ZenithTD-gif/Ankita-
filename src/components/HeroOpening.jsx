@@ -78,9 +78,23 @@ export default function HeroOpening({ onOpenSurprise, isMusicPlaying, setIsMusic
             </div>
           </div>
 
-          {/* Elegant Badge */}
-          <div className="inline-block px-3 sm:px-4 py-1 rounded-full bg-pastel-peach/90 border border-dusty-light/40 text-dusty-deep text-[11px] sm:text-xs uppercase tracking-widest font-medium mb-3 sm:mb-4 shadow-sm max-w-full truncate">
-            {birthdayData.opening.badge}
+          {/* Opening Heading: "For the Most Special Person in the Universe" */}
+          <div className="w-full max-w-full mb-3 sm:mb-4 px-1 flex justify-center">
+            <h3 
+              className="inline-block px-4 py-1.5 sm:px-5 sm:py-2 rounded-full bg-pastel-peach/95 border border-dusty-light/40 text-dusty-deep font-serif font-medium tracking-normal sm:tracking-wide shadow-sm"
+              style={{
+                fontSize: 'clamp(0.9rem, 3.8vw, 1.25rem)',
+                width: 'auto',
+                maxWidth: '100%',
+                overflowWrap: 'break-word',
+                wordBreak: 'normal',
+                whiteSpace: 'normal',
+                textAlign: 'center',
+                lineHeight: '1.4',
+              }}
+            >
+              {birthdayData.opening.badge}
+            </h3>
           </div>
 
           {/* Prominent Recipient Name */}
