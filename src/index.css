@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Elegant Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #fffdfa;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #f4a5ae;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c08081;
+  }
+}
+
+/* Balloon float up animation */
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(-50vh) rotate(8deg);
+  }
+  100% {
+    transform: translateY(-120vh) rotate(-10deg);
+    opacity: 0;
+  }
+}
+
+/* Realistic candle flicker */
+@keyframes flicker {
+  0%, 100% {
+    transform: scale(1) skewX(0deg);
+    opacity: 0.95;
+  }
+  25% {
+    transform: scale(1.06, 0.94) skewX(2deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.95, 1.05) skewX(-2deg);
+    opacity: 0.9;
+  }
+  75% {
+    transform: scale(1.03, 0.98) skewX(1deg);
+    opacity: 0.98;
+  }
+}
+
+/* Equalizer music bars */
+@keyframes musicBar {
+  0% {
+    height: 30%;
+  }
+  100% {
+    height: 100%;
+  }
+}
+
+/* Envelope flap polygon clip */
+.clip-envelope-flap {
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
