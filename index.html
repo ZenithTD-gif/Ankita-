@@ -6,13 +6,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <title>A Little World Made Just For You ♡ | Happy Birthday</title>
 
-    <!-- Google Fonts: Playfair Display, Poppins, Great Vibes, Caveat -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Google Fonts Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <!-- Instant Inline CSS to prevent ANY white screen before JS execution -->
+    <style>
+      #initial-static-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(circle at 50% 30%, #fff7fa 0%, #fefcf8 50%, #fdeef2 100%);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: #543b40;
+        text-align: center;
+        padding: 20px;
+        transition: opacity 0.5s ease-out;
+      }
+      .static-card {
+        background: rgba(255, 255, 255, 0.88);
+        border: 1px solid rgba(251, 207, 232, 0.8);
+        border-radius: 24px;
+        padding: 32px 24px;
+        max-width: 420px;
+        width: 100%;
+        box-shadow: 0 10px 30px rgba(192, 128, 129, 0.15);
+      }
+      .static-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: #fce7f0;
+        margin: 0 auto 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        animation: staticPulse 2s infinite ease-in-out;
+      }
+      .static-title {
+        font-size: 22px;
+        font-weight: 600;
+        color: #7e424c;
+        margin-bottom: 6px;
+      }
+      .static-subtitle {
+        font-size: 13px;
+        color: #9c5963;
+        margin-bottom: 24px;
+        font-weight: 300;
+      }
+      .static-bar-bg {
+        width: 100%;
+        height: 10px;
+        background: #fce7f0;
+        border-radius: 9999px;
+        overflow: hidden;
+      }
+      .static-bar-fill {
+        width: 35%;
+        height: 100%;
+        background: linear-gradient(90deg, #c08081, #e6ca65);
+        border-radius: 9999px;
+        animation: staticIndeterminate 1.8s infinite ease-in-out;
+      }
+      @keyframes staticPulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.08); }
+      }
+      @keyframes staticIndeterminate {
+        0% { transform: translateX(-100%); width: 25%; }
+        50% { transform: translateX(50%); width: 55%; }
+        100% { transform: translateX(250%); width: 25%; }
+      }
+    </style>
   </head>
   <body class="bg-cream-100 text-[#543b40] font-sans antialiased overflow-x-hidden selection:bg-pastel-pink-hover selection:text-dusty-dark">
-    <div id="root"></div>
+    <div id="root">
+      <!-- Instant 0-millisecond Visual Shell to eliminate White Screen -->
+      <div id="initial-static-loader">
+        <div class="static-card">
+          <div class="static-icon">🌸</div>
+          <div class="static-title">Preparing Something Special ♡</div>
+          <div class="static-subtitle">Creating a little world just for you...</div>
+          <div class="static-bar-bg">
+            <div class="static-bar-fill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
