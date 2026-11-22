@@ -32,6 +32,9 @@ class RomanticAudioEngine {
 
   setVolume(newVol) {
     this.volume = Math.max(0, Math.min(1, newVol));
+    if (this.externalPlayerController && this.externalPlayerController.setVolume) {
+      this.externalPlayerController.setVolume(this.volume);
+    }
     if (this.musicGain && this.ctx) {
       this.musicGain.gain.setTargetAtTime(this.volume * 0.4, this.ctx.currentTime, 0.1);
     }
@@ -103,6 +106,13 @@ class RomanticAudioEngine {
 
   // Continuous dreamy ambient romantic music generator
   startAmbientMusic(customAudioSrc = null, onStateChange = null) {
+    if (this.externalPlayerController && this.externalPlayerController.play) {
+      this.musicPlaying = true;
+      if (onStateChange) onStateChange(true);
+      this.externalPlayerController.play();
+      return;
+    }
+
     this.initContext();
     this.musicPlaying = true;
     if (onStateChange) onStateChange(true);
@@ -194,6 +204,9 @@ class RomanticAudioEngine {
 
   stopAmbientMusic(onStateChange = null) {
     this.musicPlaying = false;
+    if (this.externalPlayerController && this.externalPlayerController.pause) {
+      this.externalPlayerController.pause();
+    }
     if (this.timer) {
       clearInterval(this.timer);
       this.timer = null;

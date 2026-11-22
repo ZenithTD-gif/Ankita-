@@ -192,9 +192,10 @@ export const birthdayData = {
 
   // Music settings
   music: {
-    title: "Romantic Piano Melody",
-    subtitle: "Sweet Dreamscape",
-    audioSrc: "/assets/music/romantic-melody.mp3",
-    defaultVolume: 0.65,
+    title: "Lover (Remix)",
+    subtitle: "Taylor Swift feat. Shawn Mendes",
+    youtubeId: "b5Zay_Hd_7Q", // Taylor Swift - Lover (Remix) Feat. Shawn Mendes (Official Audio)
+    audioSrc: "/assets/music/lover-remix.mp3",
+    defaultVolume: 0.75,
   },
 };
