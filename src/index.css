@@ -6,11 +6,20 @@
   html {
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  body {
+    overflow-x: hidden;
+    width: 100%;
+    touch-action: manipulation;
   }
 
   /* Elegant Custom Scrollbar */
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
+    height: 6px;
   }
   ::-webkit-scrollbar-track {
     background: #fffdfa;
@@ -22,6 +31,15 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #c08081;
   }
+}
+
+/* Hide scrollbar for clean horizontal nav scrolling on small phones */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* Balloon float up animation */
@@ -72,4 +90,14 @@
 /* Envelope flap polygon clip */
 .clip-envelope-flap {
   clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+/* Accessibility: Respect Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

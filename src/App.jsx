@@ -44,7 +44,7 @@ export default function App() {
   return (
     <div className={`min-h-screen transition-colors duration-1000 ${
       isEveningAtmosphere ? 'bg-[#fcf5f7]' : 'bg-cream-100'
-    } text-[#543b40] relative selection:bg-pastel-pink-hover selection:text-dusty-dark`}>
+    } text-[#543b40] relative selection:bg-pastel-pink-hover selection:text-dusty-dark overflow-x-hidden w-full`}>
       
       {/* Autonomous Ambient Particle Engine (Continuous 60FPS Ambient Animation) */}
       <AutonomousAmbientEngine nightMode={isEveningAtmosphere} />
@@ -56,7 +56,7 @@ export default function App() {
       />
 
       {/* Main Experience Journey */}
-      <main className="relative z-10 flex flex-col">
+      <main className="relative z-10 flex flex-col w-full overflow-x-hidden">
         {/* 1. Website Opening / The First Impression */}
         <HeroOpening 
           onOpenSurprise={scrollToGallery}
@@ -68,74 +68,74 @@ export default function App() {
         <ScrapbookGallery />
 
         {/* 3. Special Memories / Compliments */}
-        <div id="memories-section">
+        <div id="memories-section" className="w-full">
           <SpecialMemories />
         </div>
 
         {/* 4. The Special Birthday Letter / 3D Envelope */}
-        <div id="letter-section">
+        <div id="letter-section" className="w-full">
           <LetterEnvelope3D />
         </div>
 
         {/* 5. Birthday Celebration & Pastel Cake */}
-        <div id="celebration-section">
+        <div id="celebration-section" className="w-full">
           <BirthdayCelebration />
         </div>
 
         {/* 6. Final Surprise / Emotional Farewell */}
-        <div id="final-section">
+        <div id="final-section" className="w-full">
           <FinalSurprise />
         </div>
       </main>
 
-      {/* Subtle Bottom Chapter Dock for Smooth Exploration */}
+      {/* Touch-Friendly Bottom Chapter Dock for Mobile and Desktop */}
       <nav 
         aria-label="Story chapters"
-        className="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 bg-white/75 backdrop-blur-md border border-pastel-pink/60 rounded-full px-4 py-2 shadow-glass flex items-center gap-2 sm:gap-4 transition-all hover:bg-white/90"
+        className="fixed bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 z-40 bg-white/85 backdrop-blur-lg border border-pastel-pink/60 rounded-full px-2.5 sm:px-4 py-1.5 sm:py-2 shadow-glass flex items-center gap-1 sm:gap-2.5 max-w-[96vw] overflow-x-auto no-scrollbar whitespace-nowrap transition-all hover:bg-white/95"
       >
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="text-xs font-serif text-dusty-deep/75 hover:text-dusty-deep hover:scale-105 transition-all p-1"
+          className="min-h-[44px] px-2 sm:px-2.5 py-1 text-xs font-serif text-dusty-deep/80 hover:text-dusty-deep active:scale-95 transition-all flex items-center justify-center shrink-0"
           title="Intro"
         >
-          🌸 Opening
+          🌸 Intro
         </button>
-        <span className="text-dusty-light text-xs opacity-50">•</span>
+        <span className="text-dusty-light text-xs opacity-40 shrink-0">•</span>
         <button
           onClick={() => scrollToSection('gallery-section')}
-          className="text-xs font-serif text-dusty-deep/75 hover:text-dusty-deep hover:scale-105 transition-all p-1"
-          title="Scrapbook"
+          className="min-h-[44px] px-2 sm:px-2.5 py-1 text-xs font-serif text-dusty-deep/80 hover:text-dusty-deep active:scale-95 transition-all flex items-center justify-center shrink-0"
+          title="Photos"
         >
           📷 Photos
         </button>
-        <span className="text-dusty-light text-xs opacity-50">•</span>
+        <span className="text-dusty-light text-xs opacity-40 shrink-0">•</span>
         <button
           onClick={() => scrollToSection('memories-section')}
-          className="text-xs font-serif text-dusty-deep/75 hover:text-dusty-deep hover:scale-105 transition-all p-1"
+          className="min-h-[44px] px-2 sm:px-2.5 py-1 text-xs font-serif text-dusty-deep/80 hover:text-dusty-deep active:scale-95 transition-all flex items-center justify-center shrink-0"
           title="Memories"
         >
-          ✨ Memories
+          ✨ Notes
         </button>
-        <span className="text-dusty-light text-xs opacity-50">•</span>
+        <span className="text-dusty-light text-xs opacity-40 shrink-0">•</span>
         <button
           onClick={() => scrollToSection('letter-section')}
-          className="text-xs font-serif text-dusty-deep/75 hover:text-dusty-deep hover:scale-105 transition-all p-1"
+          className="min-h-[44px] px-2 sm:px-2.5 py-1 text-xs font-serif text-dusty-deep/80 hover:text-dusty-deep active:scale-95 transition-all flex items-center justify-center shrink-0"
           title="Letter"
         >
           💌 Letter
         </button>
-        <span className="text-dusty-light text-xs opacity-50">•</span>
+        <span className="text-dusty-light text-xs opacity-40 shrink-0">•</span>
         <button
           onClick={() => scrollToSection('celebration-section')}
-          className="text-xs font-serif text-dusty-deep/75 hover:text-dusty-deep hover:scale-105 transition-all p-1"
-          title="Celebration"
+          className="min-h-[44px] px-2 sm:px-2.5 py-1 text-xs font-serif text-dusty-deep/80 hover:text-dusty-deep active:scale-95 transition-all flex items-center justify-center shrink-0"
+          title="Cake"
         >
           🎂 Cake
         </button>
-        <span className="text-dusty-light text-xs opacity-50">•</span>
+        <span className="text-dusty-light text-xs opacity-40 shrink-0">•</span>
         <button
           onClick={() => scrollToSection('final-section')}
-          className="text-xs font-serif text-dusty-deep/75 hover:text-dusty-deep hover:scale-105 transition-all p-1"
+          className="min-h-[44px] px-2 sm:px-2.5 py-1 text-xs font-serif text-dusty-deep/80 hover:text-dusty-deep active:scale-95 transition-all flex items-center justify-center shrink-0"
           title="Ending"
         >
           🌙 Finale

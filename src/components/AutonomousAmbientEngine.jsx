@@ -30,9 +30,15 @@ export default function AutonomousAmbientEngine({ nightMode = false }) {
     // 2. Sparkles/Stardust (Champagne gold)
     // 3. Floating Hearts (Blush & dusty rose)
 
-    const petalCount = window.innerWidth < 768 ? 24 : 45;
-    const sparkleCount = window.innerWidth < 768 ? 35 : 70;
-    const heartCount = window.innerWidth < 768 ? 12 : 20;
+    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (isReducedMotion) return;
+
+    const isMobile = window.innerWidth < 640;
+    const isTablet = window.innerWidth < 1024;
+
+    const petalCount = isMobile ? 15 : isTablet ? 25 : 45;
+    const sparkleCount = isMobile ? 22 : isTablet ? 40 : 70;
+    const heartCount = isMobile ? 7 : isTablet ? 12 : 20;
 
     class Petal {
       constructor() {

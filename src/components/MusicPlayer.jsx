@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Volume2, VolumeX, Music, Play, Pause } from 'lucide-react';
+import { Volume2, VolumeX, Play, Pause } from 'lucide-react';
 import { romanticAudio } from '../utils/soundEffects';
 import { birthdayData } from '../config/birthdayData';
 
@@ -45,7 +45,6 @@ export default function MusicPlayer({ isMusicPlaying, setIsMusicPlaying }) {
                 event.target.setVolume(Math.round(volume * 100));
               },
               onStateChange: (event) => {
-                // YT.PlayerState.PLAYING === 1, PAUSED === 2, ENDED === 0
                 if (event.data === 1) {
                   setIsMusicPlaying(true);
                 } else if (event.data === 2 || event.data === 0) {
@@ -53,7 +52,6 @@ export default function MusicPlayer({ isMusicPlaying, setIsMusicPlaying }) {
                 }
               },
               onError: () => {
-                // On any YouTube embed restriction, fall back to procedural audio
                 setYtReady(false);
               }
             }
@@ -70,7 +68,7 @@ export default function MusicPlayer({ isMusicPlaying, setIsMusicPlaying }) {
       window.onYouTubeIframeAPIReady = initPlayer;
     }
 
-    // Register external controller on romanticAudio so calls from HeroOpening or other components trigger Lover (Remix)
+    // Register external controller on romanticAudio
     romanticAudio.externalPlayerController = {
       play: () => {
         if (ytPlayerRef.current && ytPlayerRef.current.playVideo) {
@@ -175,17 +173,17 @@ export default function MusicPlayer({ isMusicPlaying, setIsMusicPlaying }) {
         aria-hidden="true" 
       />
 
-      <div className="fixed top-5 right-5 z-50 flex items-center gap-2">
+      <div className="fixed top-3 right-3 sm:top-5 sm:right-5 z-50 flex items-center gap-2">
         {/* Floating Glass Music Pill */}
         <div 
-          className="backdrop-blur-md bg-white/75 border border-pastel-pink/60 shadow-glass rounded-full px-3.5 py-2 flex items-center gap-3 transition-all duration-300 hover:shadow-glass-hover hover:bg-white/90"
+          className="backdrop-blur-md bg-white/80 border border-pastel-pink/60 shadow-glass rounded-full px-2.5 sm:px-3.5 py-1.5 sm:py-2 flex items-center gap-2 sm:gap-3 transition-all duration-300 hover:shadow-glass-hover hover:bg-white/95"
           onMouseEnter={() => setShowVolume(true)}
           onMouseLeave={() => setShowVolume(false)}
         >
-          {/* Play/Pause Button */}
+          {/* Play/Pause Button with min 44px touch container */}
           <button
             onClick={togglePlay}
-            className="w-8 h-8 rounded-full bg-gradient-to-r from-dusty-rose to-dusty-deep text-white flex items-center justify-center shadow-sm hover:scale-105 active:scale-95 transition-transform"
+            className="min-w-[36px] min-h-[36px] sm:min-w-[32px] sm:min-h-[32px] rounded-full bg-gradient-to-r from-dusty-rose to-dusty-deep text-white flex items-center justify-center shadow-sm hover:scale-105 active:scale-95 transition-transform"
             aria-label={isMusicPlaying ? "Pause Lover (Remix)" : "Play Lover (Remix)"}
             title={isMusicPlaying ? "Pause Lover (Remix)" : "Play Taylor Swift - Lover (Remix)"}
           >
@@ -197,41 +195,49 @@ export default function MusicPlayer({ isMusicPlaying, setIsMusicPlaying }) {
           </button>
 
           {/* Music Information & Equalizer bars */}
-          <div className="flex flex-col cursor-pointer max-w-[170px] sm:max-w-[210px]" onClick={togglePlay}>
-            <div className="flex items-center gap-1.5">
-              <span className="text-xs font-medium text-dusty-deep tracking-wide font-serif truncate">
+          <div className="flex flex-col cursor-pointer max-w-[125px] min-[380px]:max-w-[160px] sm:max-w-[210px]" onClick={togglePlay}>
+            <div className="flex items-center gap-1 sm:gap-1.5">
+              <span className="text-[11px] sm:text-xs font-medium text-dusty-deep tracking-wide font-serif truncate">
                 {birthdayData.music.title}
               </span>
               {isMusicPlaying && (
-                <span className="inline-flex items-center gap-0.5 h-3 shrink-0">
+                <span className="inline-flex items-center gap-0.5 h-2.5 sm:h-3 shrink-0">
                   <span className="w-0.5 bg-dusty-rose rounded-full animate-[musicBar_1s_ease-in-out_infinite_alternate]" style={{ height: '70%' }} />
                   <span className="w-0.5 bg-champagne-gold rounded-full animate-[musicBar_0.8s_ease-in-out_infinite_alternate_0.2s]" style={{ height: '100%' }} />
                   <span className="w-0.5 bg-dusty-rose rounded-full animate-[musicBar_1.2s_ease-in-out_infinite_alternate_0.4s]" style={{ height: '50%' }} />
                 </span>
               )}
             </div>
-            <span className="text-[10px] text-dusty-rose/85 font-sans truncate">
-              {isMusicPlaying ? "Taylor Swift ft. Shawn Mendes ♡" : "Tap to play Lover ♡"}
+            <span className="text-[9px] sm:text-[10px] text-dusty-rose/85 font-sans truncate">
+              {isMusicPlaying ? "Taylor Swift ft. Shawn Mendes ♡" : "Tap to play ♡"}
             </span>
           </div>
 
           {/* Volume controls */}
           <div className="relative flex items-center">
             <button
-              onClick={toggleMute}
-              className="text-dusty-rose/80 hover:text-dusty-deep p-1 transition-colors"
-              title={isMuted ? "Unmute" : "Mute"}
+              onClick={() => {
+                // On touch screens without hover, tap toggles volume slider
+                if (window.matchMedia('(pointer: coarse)').matches) {
+                  setShowVolume(!showVolume);
+                } else {
+                  toggleMute();
+                }
+              }}
+              className="min-w-[36px] min-h-[36px] sm:min-w-[28px] sm:min-h-[28px] text-dusty-rose/80 hover:text-dusty-deep flex items-center justify-center transition-colors"
+              title={isMuted ? "Unmute" : "Volume"}
+              aria-label="Volume settings"
             >
               {isMuted || volume === 0 ? (
-                <VolumeX className="w-4 h-4" />
+                <VolumeX className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               ) : (
-                <Volume2 className="w-4 h-4" />
+                <Volume2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               )}
             </button>
 
-            {/* Volume Slider Dropdown / Expand */}
+            {/* Volume Slider Dropdown */}
             {showVolume && (
-              <div className="absolute right-0 top-10 bg-white/95 backdrop-blur-md border border-pastel-pink/60 shadow-glass rounded-2xl p-3 flex flex-col items-center gap-2 animate-in fade-in zoom-in-95 duration-200">
+              <div className="absolute right-0 top-11 bg-white/95 backdrop-blur-md border border-pastel-pink/60 shadow-glass rounded-2xl p-3 flex flex-col items-center gap-2 animate-in fade-in zoom-in-95 duration-200 z-50">
                 <span className="text-[10px] font-medium text-dusty-deep">
                   {Math.round(volume * 100)}%
                 </span>
