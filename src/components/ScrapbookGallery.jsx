@@ -77,7 +77,7 @@ export default function ScrapbookGallery() {
       <div className="text-center max-w-2xl mx-auto mb-16 relative z-10">
         <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-pastel-pink/70 border border-pastel-rose/30 text-dusty-deep text-xs font-medium uppercase tracking-widest mb-3">
           <Sparkles className="w-3.5 h-3.5 text-champagne-gold" />
-          <span>Interactive Scrapbook</span>
+          <span>Birthday Portrait Scrapbook</span>
           <Heart className="w-3.5 h-3.5 text-dusty-rose fill-dusty-rose" />
         </div>
         <h2 className="font-serif text-3xl sm:text-5xl text-dusty-dark font-medium mb-4">
